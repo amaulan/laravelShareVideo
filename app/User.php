@@ -7,6 +7,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public function roles()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     use Notifiable;
 
     /**
@@ -15,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','username','user_github','status','role_id',
     ];
 
     /**
