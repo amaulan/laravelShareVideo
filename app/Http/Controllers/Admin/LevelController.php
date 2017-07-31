@@ -22,6 +22,11 @@ class LevelController extends Controller
 		return view( 'pages.levels.list', compact( 'data' ) );
 	}
 
+	public function add()
+	{
+		return view( 'pages.levels.add_level' );
+	}
+
 	public function create()
 	{
 		#return view( '' )
@@ -29,25 +34,25 @@ class LevelController extends Controller
 
 	public function store(Request $request)
 	{
-		$data 										= $request->only( 'level_name' );
+		$data 										= $request->only('level_name');
 		$validation 								= \Validator::make( $data , [
 				'level_name' 						=> "required|min:3|max:30"
 		]);
 
 		if ($validation->fails())
-			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
+			return \Redirect::back()->with( 'err_msg', $validation->errors()->all() )->withInput( $data );
 
 		\App\Level::create( $data );
 
 		return \Redirect::to( $this->routeUri )
-						->with( SC_MSG, 'Successfuly Created');;
+						->with( 'sc_msg', 'Successfuly Created');;
 	}
 
 	public function edit($id)
 	{
 		$data['level'] 								= \App\Level::findOrFail($id);
 
-		// return view( 'pages.levels.list', compact( 'data' ) );
+		return view( 'pages.levels.edit_level', compact( 'data' ) );
 	}
 
 	public function update(Request $request, $id)
@@ -60,22 +65,22 @@ class LevelController extends Controller
 		]);
 
 		if ($validation->fails())
-			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
+			return \Redirect::back()->with( 'err_msg', $validation->errors()->all() )->withInput( $data );
 
 		$model->update( $data );
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( SC_MSG, 'Successfuly Updated');
+						  ->with( 'sc_msg', 'Successfuly Updated');
 
 	}
 
 	public function destroy($id)
 	{
-		$model 										= \App\Level::findOrFail($id);
-		$model->destroy();
+		$model = \App\level::find($id);
+		$model->delete();
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( SC_MSG, 'Successfuly Deleted');
+						  ->with( 'sc_msg', 'Successfuly Deleted');
 
 	}
 }

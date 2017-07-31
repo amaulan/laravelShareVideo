@@ -6,13 +6,16 @@
 		<p>Place your content here.</p>
 	</div>
 </div>
+
+@include('partials.notif')
+
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="content-panel">
 			<h4 class="">
-			<button class="btn btn-success">
-			<i class="fa fa-angle-right"></i> No More Table
-			</button>
+			<a href="{{ url('admin/manage/level/add') }}" class="btn btn-success">
+			<i class="fa fa-plus"></i> ADD
+			</a>
 			</h4>
 			<table class="table table-bordered">
 				<thead class="cf">
@@ -32,8 +35,8 @@
 							<strong>100</strong>
 						</td>
 						<td class="text-center" data-title="Price">
-							<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-							<button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+							<a href="{{ url('admin/manage/level/edit/'.$level->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+							<a href="{{ url('admin/manage/level/destroy/'.$level->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
 						</td>
 					</tr>
 					@endforeach

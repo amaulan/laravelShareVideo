@@ -11,7 +11,7 @@
 			@if(is_array(Session::get('err_msg')))
 				<ul>
 					@foreach(Session::get('err_msg') as $err)
-						<li>{{ $er }}</li>
+						<li>{{ $err }}</li>
 					@endforeach
 				</ul>
 			@else
