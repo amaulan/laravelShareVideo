@@ -10,4 +10,12 @@ class Class extends Model
     {
     	return $this->hasMany(Course::class);
     }
+
+	public $timestamps = false;
+
+    protected $fillable = [
+
+   'level_name',
+
+   ];
 }
