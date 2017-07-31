@@ -13,7 +13,7 @@
 	<div class="col-lg-12">
 		<div class="content-panel">
 			<h4 class="">
-			<a href="{{ url('admin/manage/level/add') }}" class="btn btn-success">
+			<a href="{{ url('admin/manage/level/create') }}" class="btn btn-success">
 			<i class="fa fa-plus"></i> ADD
 			</a>
 			</h4>

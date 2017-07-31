@@ -22,14 +22,9 @@ class LevelController extends Controller
 		return view( 'pages.levels.list', compact( 'data' ) );
 	}
 
-	public function add()
-	{
-		return view( 'pages.levels.add_level' );
-	}
-
 	public function create()
 	{
-		#return view( '' )
+		return view( 'pages.levels.create' );
 	}
 
 	public function store(Request $request)
@@ -40,19 +35,19 @@ class LevelController extends Controller
 		]);
 
 		if ($validation->fails())
-			return \Redirect::back()->with( 'err_msg', $validation->errors()->all() )->withInput( $data );
+			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
 
 		\App\Level::create( $data );
 
 		return \Redirect::to( $this->routeUri )
-						->with( 'sc_msg', 'Successfuly Created');;
+						->with( SC_MSG, 'Successfuly Created');;
 	}
 
 	public function edit($id)
 	{
 		$data['level'] 								= \App\Level::findOrFail($id);
 
-		return view( 'pages.levels.edit_level', compact( 'data' ) );
+		return view( 'pages.levels.edit', compact( 'data' ) );
 	}
 
 	public function update(Request $request, $id)
@@ -65,22 +60,22 @@ class LevelController extends Controller
 		]);
 
 		if ($validation->fails())
-			return \Redirect::back()->with( 'err_msg', $validation->errors()->all() )->withInput( $data );
+			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
 
 		$model->update( $data );
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( 'sc_msg', 'Successfuly Updated');
+						  ->with( SC_MSG, 'Successfuly Updated');
 
 	}
 
 	public function destroy($id)
 	{
-		$model = \App\level::find($id);
+		$model = \App\Level::find($id);
 		$model->delete();
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( 'sc_msg', 'Successfuly Deleted');
+						  ->with( SC_MSG, 'Successfuly Deleted');
 
 	}
 }
