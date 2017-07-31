@@ -3,11 +3,12 @@
 <h3><i class="fa fa-angle-right"></i> {{ $data['pages']['title'] }}</h3>
 <div class="row mt">
 	<div class="col-lg-12">
+		<a href="{{ url('admin/manage/course/create') }}" class="btn btn-success">Add New Course</a>
 		{{-- <p>Place your content here.</p> --}}
 	</div>
 </div>
 <div class="row mt">
-
+	<br><br>
 	@foreach($data['courses'] as $index => $course)
 	<div class="col-lg-4 col-md-4 col-sm-4 mb">
 		<a href="">
@@ -17,7 +18,7 @@
 				<div class="blog-title">{{ $course->course_name }}</div>
 			</div>
 			<div class="blog-text">
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+				<p style="color: gray">{{ $course->course_desc }}</p>
 				<div class="row">
 					<div class="col-md-4">
 						@php

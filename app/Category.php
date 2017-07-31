@@ -11,13 +11,14 @@ class Category extends Model
 
 	protected $fillable = [
 
-   'is_enable',
+	   'category_name',
+     'category_color',
+     'is_enable',
 
-   ];
+   	];
 
-   public function courses()
+   	public function courses()
     {
-        return $this->belongstoMany(Course::class);
+        return $this->belongstoMany(Course::class,'course_categories','category_id','course_id');
     }
-
 }

@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
+    protected $fillable  = [
+        'course_name',
+        'course_desc',
+        'course_picture',
+        'permission',
+        'is_publish',
+        'can_comment',
+        'complete',
+        'published_at',
+        'user_id',
+        'level_id'
+    ];
+
     public function levels()
     {
         return $this->belongsTo(Level::class, 'level_id');

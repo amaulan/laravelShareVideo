@@ -21,6 +21,7 @@
     <script src="{{ url('assets/js/common-scripts.js') }}"></script>
     <!--script for this page-->
     
+    @yield('js')
     <script>
     // //custom select box
     // $(function(){
