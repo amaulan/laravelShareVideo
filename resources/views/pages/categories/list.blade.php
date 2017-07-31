@@ -6,13 +6,17 @@
 		<p>Place your content here.</p>
 	</div>
 </div>
+
+@include('partials.notif')
+
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="content-panel">
+
 			<h4 class="">
-			<button class="btn btn-success">
-			<i class="fa fa-angle-right"></i> No More Table
-			</button>
+			<a href="{{ url('admin/manage/category/create') }}" class="btn btn-success">
+			<i class="fa fa-plus"></i> ADD
+			</a>
 			</h4>
 			<table class="table table-bordered">
 				<thead class="cf">
@@ -32,7 +36,7 @@
 						<td data-title="Category">{{ $category->category_name }}</td>
 						<td class="text-center"><span class="label" style="background: {{ $category->category_color }}"><strong>{{ $category->category_color }}</strong></span></td>
 						<td class="text-center">
-							<strong>100</strong>
+							<strong>{{ $category->courses()->count() }}</strong>
 						</td>
 						<td class="text-center">
 							@if($category->is_enabled != 1)
@@ -43,11 +47,11 @@
 						</td>
 						<td class="text-center" data-title="Price">
 							@if($category->is_enabled != 1)
-								<button class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top"><i class="fa fa-check"></i></button>
+								<a href="{{ url('admin/manage/category/update') }}?id={{$category->id}}&is_enable=1" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top"><i class="fa fa-check"></i></a>
 							@else
-								<button class="btn btn-danger btn-xs"><i class="fa fa-ban"></i></button>
+								<a href="{{ url('admin/manage/category/update') }}?id={{$category->id}}&is_enable=0" class="btn btn-danger btn-xs"><i class="fa fa-ban"></i></a>
 							@endif
-							<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+							<a href="{{ url('admin/manage/category/edit') }}?id={{$category->id}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
 						</td>
 					</tr>
 					@endforeach
