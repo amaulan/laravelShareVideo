@@ -31,8 +31,8 @@
           <span>Courses</span>
         </a>
         <ul class="sub">
-          <li class="active"><a  href="blank.html">My Course</a></li>
-          <li><a  href="login.html">All Course</a></li>
+          <li><a  href="{{ url('admin/manage/course/me') }}">My Course</a></li>
+          <li><a  href="{{ url('admin/manage/course/all') }}">All Course</a></li>
         </ul>
       </li>
       <li class="sub-menu">
