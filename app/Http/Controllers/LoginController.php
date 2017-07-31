@@ -28,6 +28,6 @@ class LoginController extends Controller
  		\Auth::logout();
 
  		return \Redirect::to('login')
- 				->with('sc_msg', 'Logout Succceessfuly');
+ 				->with('sc_msg', 'Logout Successfuly');
  	}
 }

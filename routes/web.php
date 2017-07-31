@@ -16,6 +16,11 @@ Route::group( [ 'middleware' => 'web' ], function(){
 
 		Route::group( ['prefix' => 'category'], function(){
 			Route::get('/',									'Admin\CategoryController@index');
+			Route::get('/create',							'Admin\CategoryController@create');
+			Route::post('/created',							'Admin\CategoryController@created');
+			Route::get('/update',							'Admin\CategoryController@update');
+			Route::get('/edit',								'Admin\CategoryController@edit');
+			Route::post('/edited',							'Admin\CategoryController@edited');
 		});
 
 		Route::group( ['prefix' => 'level'], function(){
