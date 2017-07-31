@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/login', 'userController@login');
-Route::post('/inlogin', 'userController@inlogin');
-Route::get('/inregister', 'userController@inregister');
+Route::get('/login', 'UserController@login');
 
-Route::get('/admin', 'adminController@index');
+Route::get('/admin', 'AdminController@index');
+Route::post('/inlogin','UserController@inlogin');
+Route::get('/inregister', 'UserController@inregister');

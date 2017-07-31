@@ -20,6 +20,7 @@ class CreateCoursesTable extends Migration
             $table->tinyInteger('permission')->default(0);
             $table->tinyInteger('is_publish')->default(0);
             $table->tinyInteger('can_comment')->default(1);
+            $table->tinyInteger('complete')->default(0);
             $table->timestamp('publish_at')->nullable();
             $table->timestamps();
             $table->integer('user_id')->unsigned();

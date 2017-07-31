@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password',255);
             $table->string('username',255);
             $table->string('user_github',255);
+            $table->string('user_avatar',255);
             $table->tinyInteger('status')->default(0);
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');

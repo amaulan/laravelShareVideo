@@ -13,7 +13,7 @@ use Session;//->Memanggil class Session
 use Mail;
 use App\Mail\SendMail;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {

@@ -13,7 +13,7 @@ use Session;//->Memanggil class Session
 use Mail;
 use App\Mail\SendMail;
 
-class userController extends Controller
+class UserController extends Controller
 {
    public function login()
    {
@@ -23,7 +23,7 @@ class userController extends Controller
 
    public function inlogin(Request $request)
    {
-   			$email 			= $request->email;//->Mengambil data dengan class Request dan memasukan ke variable
+   			    $email 			= $request->email;//->Mengambil data dengan class Request dan memasukan ke variable
             $password 		= $request->password;//->Mengambil data dengan class Request dan memasukan ke variable
             if (Auth::attempt([
             	'email' 	=> $email,

@@ -34,8 +34,8 @@
 	  <div id="login-page">
 	  	<div class="container">
 	  	
-		      <form class="form-login" action="inlogin" method="POST">
-		      {{ csrf_field() }}
+		      <form action="inlogin" method="POST" class="form-login">
+				{{ csrf_field() }}
 		        <h2 class="form-login-heading">sign in now</h2>
 		        <div class="login-wrap">
 		        	@if (session()->has('notlogin'))<!-- Percabangan menampilkan notifikasi jika gagal login -->
@@ -54,12 +54,6 @@
 		            <input type="email" class="form-control" placeholder="Email" autofocus name="email">
 		            <br>
 		            <input type="password" class="form-control" placeholder="Password" name="password">
-		            <label class="checkbox">
-		                <span class="pull-right">
-		                    <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
-		
-		                </span>
-		            </label>
 		            <input class="btn btn-theme btn-block" type="submit" name="signin" value="SIGN - IN">
 		            <hr>
 		            
@@ -87,7 +81,7 @@
 		                      </div>
 		                      <div class="modal-body">
 		                          <p>Enter your e-mail address below to reset your password.</p>
-		                          <input type="text" name="confirm" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+		                          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
 		
 		                      </div>
 		                      <div class="modal-footer">
@@ -98,8 +92,33 @@
 		              </div>
 		          </div>
 		          <!-- modal -->
+
+					
+		        </div>
 		
-		      </form>	  	
+		      </form>
+
+		      <!-- Modal -->
+		          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+		              <div class="modal-dialog">
+		                  <div class="modal-content">
+		                      <div class="modal-header">
+		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                          <h4 class="modal-title">Forgot Password ?</h4>
+		                      </div>
+		                      <div class="modal-body">
+		                          <p>Enter your e-mail address below to reset your password.</p>
+		                          <input type="text" name="confirm" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+		
+		                      </div>
+		                      <div class="modal-footer">
+		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+		                          <button class="btn btn-theme" type="button">Submit</button>
+		                      </div>
+		                  </div>
+		              </div>
+		          </div>
+		          <!-- modal -->	  	
 	  	
 	  	</div>
 	  </div>
