@@ -32,6 +32,47 @@ class CourseController extends Controller
 
 	public function allCourse()
 	{
+		$data['pages']['title'] 	= 'My Course';
+		$data['pages']['active']	= 'my-course';
 
+		$data['courses']			=	\App\Course::paginate(20);
+
+		return view( 'pages.courses.list', compact( 'data' ));
+	}
+
+	public function create()
+	{
+		$data['pages']['title'] 	= 'My Course';
+		$data['pages']['active']	= 'my-course';
+
+		$data['data']['levels']		= \App\Level::all();
+		$data['data']['categories'] = \App\Category::all();
+
+		return view( 'pages.courses.create', compact( 'data' ) );
+	}
+
+	public function store(Request $request)
+	{
+		$userId 					= \Auth::user()->id;
+		$request 					= $request->all();
+		$request['user_id']			= $userId;
+		$data 						= collect($request)->map(function($i){
+			if($i == 'on')
+				return 1;
+			elseif($i == 'off')
+				return 0;
+			else
+				return $i;
+
+		})->toArray();
+
+		\DB::transaction( function() use($data){
+
+			$store 						= \App\Course::create($data)
+										   ->categories()
+										   ->attach( $data['category_id'] );
+		});
+
+		
 	}
 }

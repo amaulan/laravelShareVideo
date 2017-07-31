@@ -29,7 +29,7 @@
 						<td data-title="No">{{ ++$index }}</td>
 						<td data-title="Level">{{ $level->level_name }}</td>
 						<td class="text-center">
-							<strong>100</strong>
+							<strong>{{ $level->courses()->count() }}</strong>
 						</td>
 						<td class="text-center" data-title="Price">
 							<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>

@@ -36,7 +36,7 @@
 						<td data-title="Category">{{ $category->category_name }}</td>
 						<td class="text-center"><span class="label" style="background: {{ $category->category_color }}"><strong>{{ $category->category_color }}</strong></span></td>
 						<td class="text-center">
-							<strong>100</strong>
+							<strong>{{ $category->courses()->count() }}</strong>
 						</td>
 						<td class="text-center">
 							@if($category->is_enabled != 1)
