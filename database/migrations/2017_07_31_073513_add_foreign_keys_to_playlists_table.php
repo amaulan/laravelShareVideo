@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+
+class AddForeignKeysToPlaylistsTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::table('playlists', function(Blueprint $table)
+		{
+			$table->foreign('course_id')->references('id')->on('courses')->onUpdate('CASCADE')->onDelete('CASCADE');
+		});
+	}
+
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::table('playlists', function(Blueprint $table)
+		{
+			$table->dropForeign('playlists_course_id_foreign');
+		});
+	}
+
+}
