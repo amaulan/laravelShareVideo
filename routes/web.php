@@ -35,6 +35,8 @@ Route::group( [ 'middleware' => 'web' ], function(){
 
 		Route::group( ['prefix' => 'course'], function(){
 			Route::get('/',									'Admin\CourseController@index');
+			Route::get('/me',								'Admin\CourseController@myCourse');
+			Route::get('/all',								'Admin\CourseController@allCourse');
 		});
 
 		Route::group( ['prefix' => 'email'], function(){
