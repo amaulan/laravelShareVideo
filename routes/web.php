@@ -27,7 +27,7 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/',									'Admin\LevelController@index')->name('level');
 			Route::get('/create',							'Admin\LevelController@create')->name('level.create');
 			Route::post('/store',							'Admin\LevelController@store')->name('level.store');
-			Route::get('/edit/{id}',						'Admin\LevelController@index')->name('level.edit');
+			Route::get('/edit/{id}',						'Admin\LevelController@edit')->name('level.edit');
 			Route::post('/update/{id}',						'Admin\LevelController@update')->name('level.update');
 			Route::get('/destroy/{id}',						'Admin\LevelController@destroy')->name('level.destroy');
 

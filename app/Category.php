@@ -21,4 +21,9 @@ class Category extends Model
     }
 
 
+   public function courses()
+    {
+        return $this->belongstoMany(Course::class);
+    }
+
 }

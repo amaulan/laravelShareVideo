@@ -24,12 +24,12 @@ class LevelController extends Controller
 
 	public function create()
 	{
-		#return view( '' )
+		return view( 'pages.levels.create' );
 	}
 
 	public function store(Request $request)
 	{
-		$data 										= $request->only( 'level_name' );
+		$data 										= $request->only('level_name');
 		$validation 								= \Validator::make( $data , [
 				'level_name' 						=> "required|min:3|max:30"
 		]);
@@ -47,7 +47,7 @@ class LevelController extends Controller
 	{
 		$data['level'] 								= \App\Level::findOrFail($id);
 
-		// return view( 'pages.levels.list', compact( 'data' ) );
+		return view( 'pages.levels.edit', compact( 'data' ) );
 	}
 
 	public function update(Request $request, $id)
@@ -71,8 +71,8 @@ class LevelController extends Controller
 
 	public function destroy($id)
 	{
-		$model 										= \App\Level::findOrFail($id);
-		$model->destroy();
+		$model = \App\Level::find($id);
+		$model->delete();
 
 		return \Redirect::to( $this->routeUri )
 						  ->with( SC_MSG, 'Successfuly Deleted');
