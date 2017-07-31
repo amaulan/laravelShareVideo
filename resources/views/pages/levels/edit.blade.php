@@ -1,32 +1,27 @@
 @extends('partials.master')
 @section('content')
-<h3><i class="fa fa-angle-right"></i> Category Page</h3>
+<h3><i class="fa fa-angle-right"></i> Level Page</h3>
 <div class="row mt">
 	<div class="col-lg-12">
 		<p>Place your content here.</p>
 	</div>
 </div>
+
+
+
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="form-panel">
-		@if ($errors->any())<!-- Percabngan jika ada inputan yang salah -->
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)<!-- Menampilkan eror dengan perulangan -->
-                        <li>{{ $error }}</li><!-- Menampilkan bagian eror -->
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @include('partials.notif')
 
-        @foreach ($category as $category)<!-- Menampilkan eror dengan perulangan -->
-            <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Category</h4>
-                      <form class="form-horizontal style-form" method="post" action="{{ url('admin/manage/category/edited') }}">
+        @foreach ($data as $data)<!-- Menampilkan eror dengan perulangan -->
+            <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Level</h4>
+                      <form class="form-horizontal style-form" method="post" action="{{ url('admin/manage/level/update/'.$data->id) }}">
                         {{ csrf_field() }} 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">NAME</label>
                               <div class="col-sm-10">
-                                  <input type="text" class="form-control" name="category_name" value="{{$category->category_name}}">
+                                  <input type="text" class="form-control" name="level_name" value="{{$data->level_name}}">
                               </div>
                           </div>
                            <div class="form-group">

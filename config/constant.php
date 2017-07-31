@@ -10,4 +10,4 @@ define('ENABLE_TEXT',				'Enable');
 define('DISABLE_TEXT',				'Disable');
 
 define('ERR_MSG',					'err_msg');
-define('SC_MMSG',					'sc_msg');
+define('SC_MSG',					'sc_msg');
