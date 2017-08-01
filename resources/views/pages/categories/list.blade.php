@@ -23,8 +23,8 @@
 					<tr>
 						<th>No</th>
 						<th>Category</th>
-						<th class="text-center">Color</th>
-						<th class="text-center">Total Course</th>
+						<th class="text-center hidden-phone">Color</th>
+						<th class="text-center hidden-phone">Total Course</th>
 						<th class="text-center">Status</th>
 						<th class="text-center">Action</th>
 					</tr>
@@ -34,8 +34,8 @@
 					<tr @if($category->is_enabled != 1) style="background: #aeb2b7" @endif>
 						<td data-title="No">{{ ++$index }}</td>
 						<td data-title="Category">{{ $category->category_name }}</td>
-						<td class="text-center"><span class="label" style="background: {{ $category->category_color }}"><strong>{{ $category->category_color }}</strong></span></td>
-						<td class="text-center">
+						<td class="text-center hidden-phone"><span class="label" style="background: {{ $category->category_color }}"><strong>{{ $category->category_color }}</strong></span></td>
+						<td class="text-center hidden-phone">
 							<strong>{{ $category->courses()->count() }}</strong>
 						</td>
 						<td class="text-center">
