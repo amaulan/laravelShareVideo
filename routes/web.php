@@ -4,8 +4,8 @@
 
 Route::group( [ 'middleware' => 'web' ], function(){
 	Route::get('login',										'LoginController@showLogin');
-	Route::post('login',										'LoginController@doLogin');
-	Route::get('logout',										'LoginController@doLogout');
+	Route::post('login',									'LoginController@doLogin');
+	Route::get('logout',									'LoginController@doLogout');
 
 
 	Route::group( ['prefix' => 'admin/manage'], function(){
@@ -39,6 +39,13 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/all',								'Admin\CourseController@allCourse');
 			Route::get('/create',							'Admin\CourseController@create');
 			Route::post('/store',							'Admin\CourseController@store');
+
+			Route::group( ['prefix' => '{id}/playlist'], function(){
+				Route::get('/',								'Admin\PlaylistController@index');
+				Route::get('/create',						'Admin\PlaylistController@create');
+				Route::post('/store-video',						'Admin\PlaylistController@storeVideo');
+				Route::post('/store',						'Admin\PlaylistController@store');
+			});
 
 		});
 
