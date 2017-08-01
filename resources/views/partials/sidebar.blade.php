@@ -51,7 +51,8 @@
           <span>Email</span>
         </a>
         <ul class="sub">
-          <li><a  href="form_component.html">Form Components</a></li>
+          <li><a  href="{{ url('admin/manage/email/compose') }}">Compose</a></li>
+          <li><a  href="{{ url('admin/manage/email/subcriber') }}">Subcriber List</a></li>
         </ul>
       </li>
       <li class="sub-menu">

@@ -70,10 +70,12 @@ Route::group( [ 'middleware' => 'web' ], function(){
 		});
 
 		Route::group( ['prefix' => 'email'], function(){
-			Route::get('/subscribe',						'Admin\EmailController@subscriberEmailList');
+			Route::get('/compose',							'Admin\EmailController@create');
 
-			Route::get('/compose',							'Admin\EmailController@compose');
+			Route::post('/store',							'Admin\EmailController@store');
 			Route::get('/',									'Admin\EmailController@index');
+			
+			Route::get('/subscriber',						'Admin\EmailController@subscriberList');
 		});
 
 		Route::group( ['prefix' => 'comments'], function(){

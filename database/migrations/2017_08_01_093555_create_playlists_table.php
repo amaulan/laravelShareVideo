@@ -17,8 +17,9 @@ class CreatePlaylistsTable extends Migration {
 			$table->increments('id');
 			$table->string('playlists_name');
 			$table->string('playlists_video');
+			$table->text('playlist_video_url', 65535);
 			$table->string('video_length');
-			$table->integer('playlists_watched');
+			$table->integer('playlists_watched')->nullable()->default(0);
 			$table->boolean('can_comment')->default(1);
 			$table->dateTime('publish_at')->nullable();
 			$table->timestamps();
