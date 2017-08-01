@@ -3,12 +3,12 @@
 //Router Admin Sobatdev v1
 
 Route::group( [ 'middleware' => 'web' ], function(){
-	Route::get('login',										'LoginController@showLogin');
-	Route::post('login',										'LoginController@doLogin');
-	Route::get('logout',										'LoginController@doLogout');
+	Route::get('login',										'LoginController@showLogin')->name('login');
+	Route::post('login',									'LoginController@doLogin');
+	Route::get('logout',									'LoginController@doLogout');
 
 
-	Route::group( ['prefix' => 'admin/manage'], function(){
+	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth'], function(){
 
 		Route::get('/', 									'Admin\DashboardController@index');
 		Route::get('/dashboard', 							'Admin\DashboardController@index');
@@ -39,6 +39,14 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/all',								'Admin\CourseController@allCourse');
 			Route::get('/create',							'Admin\CourseController@create');
 			Route::post('/store',							'Admin\CourseController@store');
+
+			Route::group( ['prefix' => '{course_id}/playlist'], function(){
+				Route::get('/',								'Admin\PlaylistController@index');
+				Route::get('/create',						'Admin\PlaylistController@create');
+				Route::post('/store-video',					'Admin\PlaylistController@storeVideo');
+				Route::post('/store',						'Admin\PlaylistController@store');
+				Route::get('/delete/{playlist_id}',					'Admin\PlaylistController@destroy');
+			});
 
 		});
 
