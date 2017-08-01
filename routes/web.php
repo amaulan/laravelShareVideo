@@ -1,6 +1,7 @@
 <?php
 
 //Router Admin Sobatdev v1
+Route::get('/dummy',							'Admin\AdminManageController@dummy');
 
 Route::group( [ 'middleware' => 'web' ], function(){
 	Route::get('login',										'LoginController@showLogin');
@@ -21,6 +22,24 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/update',							'Admin\CategoryController@update');
 			Route::get('/edit',								'Admin\CategoryController@edit');
 			Route::post('/edited',							'Admin\CategoryController@edited');
+		});
+
+		Route::group( ['prefix' => 'admin'], function(){
+			Route::get('/',									'Admin\AdminManageController@index')->name('admin');
+			Route::get('/create',							'Admin\AdminManageController@create')->name('admin.create');
+			Route::post('/store',							'Admin\AdminManageController@store');
+			Route::post('/update/{id}',						'Admin\AdminManageController@update');
+			Route::get('/edit/{id}',						'Admin\AdminManageController@edit');
+			Route::get('/destroy/{id}',						'Admin\AdminManageController@destroy');
+		});
+
+		Route::group( ['prefix' => 'users'], function(){
+			Route::get('/',									'Admin\UserManageController@index');
+			Route::get('/detail/{id}',						'Admin\UserManageController@detail');
+			Route::post('/store',							'Admin\UserManageController@store');
+			Route::get('/update',							'Admin\UserManageController@update');
+			Route::get('/edit',								'Admin\UserManageController@edit');
+			Route::get('/destroy',							'Admin\UserManageController@destroy');
 		});
 
 		Route::group( ['prefix' => 'level'], function(){

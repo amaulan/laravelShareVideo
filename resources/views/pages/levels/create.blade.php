@@ -11,7 +11,7 @@
 		<div class="form-panel">
 @include('partials.notif')
 
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Level Category</h4>
+                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Create Level</h4>
                       <form class="form-horizontal style-form" method="post" action="{{ url('admin/manage/level/store') }}">
                       	{{ csrf_field() }} 
                           <div class="form-group">
