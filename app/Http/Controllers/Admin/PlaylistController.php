@@ -48,7 +48,7 @@ class PlaylistController extends Controller
 			    	 ->playlists()
 			    	 ->save( new \App\Playlist([
 			    		'playlists_name' 		=> $request->playlist_name,
-			    		'playlists_video' 		=> "test video.mp4",
+			    		'playlists_video' 		=> $video['filename'],
 			    		'playlist_video_url' 	=> $video['url'],
 			    		'video_length' 			=> $video['duration'],
 			    		'can_comment'			=> 1
@@ -58,5 +58,18 @@ class PlaylistController extends Controller
 
 
 		return \Redirect::back()->with('sc_msg','Successfuly Adding new Playlist');
+    }
+
+    public function destroy($courseId, $playlistId)
+    {
+
+		$playlist 		=	\App\Course::findOrFail($courseId)
+							  ->playlists()
+							  ->find($playlistId);
+		$s3 			= new CloudKilat;
+		$s3->delete( S3_VIDEO, $playlist->playlists_video );
+		$playlist->delete();
+
+		return \Redirect::back()->with('sc_msg','Successfuly Delete Playlist');
     }
 }

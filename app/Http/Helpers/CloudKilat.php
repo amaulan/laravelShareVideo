@@ -31,18 +31,23 @@ class CloudKilat
 
 	public function store($pathFile, $folder, $filename)
 	{
-		$path 					=	$folder.$filename;
+		$file 					=   $filename;
+		$pathInfo 				= 	pathinfo($file);
+		$nameSlug 				=	str_slug( $pathInfo['filename'] , "-" ). '.' . $pathInfo['extension'];
+
+		$path 					=	$folder . $nameSlug;
 		try{
 			$this->_s3->putObject( S3::inputFile( $pathFile, false ), $this->bucket, $path, S3::ACL_PUBLIC_READ );
 
 		} catch(\Excetion $e)
 		{
-			return false;
+			return $e->getMessage();
 		}
 
 		return [
-			'status' => 1,
-			'url'	 => S3_DOMAIN.$path
+			'status' 	=> 1,
+			'url'	 	=> S3_DOMAIN.$path,
+			'filename'  => $nameSlug
 		];
 	}
 

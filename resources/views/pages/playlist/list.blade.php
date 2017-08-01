@@ -62,7 +62,7 @@
 								<div class="pull-right hidden-phone">
 									<button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
 									<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-									<button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+									<a onclick="return confirm('Are You Sure ?')" href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/delete/'.$playlist->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
 								</div>
 							</div>
 						</li>
