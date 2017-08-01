@@ -60,8 +60,8 @@
           <span>Manage Users</span>
         </a>
         <ul class="sub">
-          <li><a  href="basic_table.html">Basic Table</a></li>
-          <li><a  href="responsive_table.html">Responsive Table</a></li>
+          <li><a  href="{{ url('admin/manage/admin') }}">Admins</a></li>
+          <li><a  href="{{ url('admin/manage/users') }}">Users</a></li>
         </ul>
       </li>
       <li class="sub-menu">
