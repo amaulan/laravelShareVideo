@@ -19,13 +19,19 @@ class PlaylistController extends Controller
 
     public function storeVideo(Request $request)
     {
-    	// return $request->all();
-    	$file 					= $request->file('file');
-    	$filePath				= $file->getPathName();
-    	$name 					= $file->getClientOriginalName();
+    	$file 								= $request->file('file');
+    	$filePath							= $file->getPathName();
+    	$name 								= $file->getClientOriginalName();
     	
-    	$s3 =					new CloudKilat;
-    	$response 				= $s3->store( $filePath, S3_VIDEO, $name);
+    	$getID3								= new \getID3;
+    	$analyze 							= $getID3->analyze($filePath);
+    	$durationSec 						= $analyze["playtime_seconds"];
+    	$duration 							= $analyze["playtime_string"];
+
+    	$s3 								= new CloudKilat;
+    	$response 							= $s3->store( $filePath, S3_VIDEO, $name);
+    	$response['duration']   			= $duration;
+    	$response['durationSec']   			= $durationSec;
 
     	\Session::put('video',	$response);
 
@@ -44,8 +50,13 @@ class PlaylistController extends Controller
 			    		'playlists_name' 		=> $request->playlist_name,
 			    		'playlists_video' 		=> "test video.mp4",
 			    		'playlist_video_url' 	=> $video['url'],
-			    		'video_length' 			=> '90:11',
+			    		'video_length' 			=> $video['duration'],
 			    		'can_comment'			=> 1
 			    	]) );
+
+		\Session::forget('video');
+
+
+		return \Redirect::back()->with('sc_msg','Successfuly Adding new Playlist');
     }
 }

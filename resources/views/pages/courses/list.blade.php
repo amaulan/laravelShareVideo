@@ -11,7 +11,7 @@
 	<br><br>
 	@foreach($data['courses'] as $index => $course)
 	<div class="col-lg-4 col-md-4 col-sm-4 mb">
-		<a href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/store') }}">
+		<a href="{{ url('admin/manage/course/'.$course->id.'/playlist') }}">
 		<div class="content-panel pn">
 			<div id="blog-bg">
 				<div class="badge badge-popular" style="word-wrap: break-word;">{{ $course->levels()->first()->level_name }}</div>
