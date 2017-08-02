@@ -54,6 +54,12 @@ class EmailController extends Controller
 
 	public function subscriberList()
 	{
-		return 3;
+		$data['subscribes']									=	\App\Subscribe::paginate(20);
+		return view('pages.subcriber.list', compact( 'data' ));
+	}
+	public function feedbackList()
+	{
+		$data['feedbacks']									=	\App\Feedback::paginate(20);
+		return view('pages.feedbacks.list', compact( 'data' ));
 	}
 }

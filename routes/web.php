@@ -42,6 +42,15 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/destroy',							'Admin\UserManageController@destroy');
 		});
 
+		Route::group( ['prefix' => 'subscribe'], function(){
+			Route::get('/',									'Admin\SubscribeManageController@index');
+			Route::get('/detail/{id}',						'Admin\SubscribeManageController@detail');
+			Route::post('/store',							'Admin\SubscribeManageController@store');
+			Route::get('/update',							'Admin\SubscribeManageController@update');
+			Route::get('/edit',								'Admin\SubscribeManageController@edit');
+			Route::get('/destroy',							'Admin\SubscribeManageController@destroy');
+		});
+
 		Route::group( ['prefix' => 'level'], function(){
 			Route::get('/',									'Admin\LevelController@index')->name('level');
 			Route::get('/create',							'Admin\LevelController@create')->name('level.create');
@@ -76,6 +85,7 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::get('/',									'Admin\EmailController@index');
 			
 			Route::get('/subscriber',						'Admin\EmailController@subscriberList');
+			Route::get('/feedback',							'Admin\EmailController@feedbackList');
 		});
 
 		Route::group( ['prefix' => 'comments'], function(){
