@@ -28,12 +28,6 @@
                                   <input type="text" class="form-control" name="email" value="{{$admin->email}}">
                               </div>
                           </div>
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">PASSWORD</label>
-                              <div class="col-sm-10">
-                                  <input type="password" class="form-control" name="password" value="{{$admin->password}}">
-                              </div>
-                          </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">USER GITHUB</label>
                               <div class="col-sm-10">
