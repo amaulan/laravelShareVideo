@@ -42,12 +42,9 @@ class SendEmail implements ShouldQueue
 
         try{ 
             \Mail::send( 'mail-templates.attention' , [ 'content' => $this->content ], function($mail) use($data){
-                foreach( $data['to']  as $key => $value)
-                {
                     $mail->from('ayat.maulana@indosystem.com', 'Ayat Maulana');
-                    $mail->to($value);
+                    $mail->to($data['to']);
                     $mail->subject($data['subject']);
-                }
             });
         } catch(\Exception $e)
         {

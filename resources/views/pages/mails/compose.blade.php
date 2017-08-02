@@ -6,9 +6,6 @@
 		<p>Place your content here.</p>
 	</div>
 </div>
-@include('partials.notif')
-<div class="row mt">
-	<div class="col-lg-12">
 		<div class="row mt">
 			<div class="col-lg-12">
 				<div class="form-panel">
@@ -58,8 +55,6 @@
 						</div>
 					</form>
 				</div>
-				</div><!-- col-lg-12-->
-				</div><!-- /row -->
 				</div><!-- /col-lg-12 -->
 				</div><!-- /row -->
 				@endsection

@@ -23,8 +23,16 @@ class EmailController extends Controller
 			$allEmail 	= $this->getAllEmail();
 		} 
 
+		$this->sendMail( $allEmail, $subject, $content );
 
-		$this->dispatch( new \App\Jobs\SendEmail( $allEmail, $subject, $content ) );
+		return \Redirect::back()->with('sc_msg', 'Successfuly Send Email');
+	}
+
+	public function sendMail( $allMail, $subject, $content )
+	{
+		collect($allMail)->each(function($receiver) use($allMail, $subject, $content) {
+			$this->dispatch( new \App\Jobs\SendEmail( $receiver, $subject, $content ) );
+		});
 	}
 
 	public function getAllEmail()
