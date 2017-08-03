@@ -41,7 +41,7 @@
           <span>Comment</span>
         </a>
         <ul class="sub">
-          <li><a  href="{{ url('admin/manage/comments') }}">Comments Lists</a></li>
+          <li><a  href="{{ url('admin/manage/comment') }}">Comments Lists</a></li>
           <li><a  href="{{ url('admin/manage/email/feedback') }}">Feedbacks Lists</a></li>
         </ul>
       </li>
