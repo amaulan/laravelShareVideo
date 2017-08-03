@@ -40,6 +40,10 @@
           <i class="fa fa-bar-chart-o"></i>
           <span>Comment</span>
         </a>
+        <ul class="sub">
+          <li><a  href="{{ url('admin/manage/comments') }}">Comments Lists</a></li>
+          <li><a  href="{{ url('admin/manage/email/feedback') }}">Feedbacks Lists</a></li>
+        </ul>
       </li>
       <li class="sub-menu">
         <a href="javascript:;" >
@@ -48,7 +52,7 @@
         </a>
         <ul class="sub">
           <li><a  href="{{ url('admin/manage/email/compose') }}">Compose</a></li>
-          <li><a  href="{{ url('admin/manage/email/subcriber') }}">Subcriber List</a></li>
+          <li><a  href="{{ url('admin/manage/email/subscriber') }}">Subcriber List</a></li>
         </ul>
       </li>
       <li class="sub-menu">
