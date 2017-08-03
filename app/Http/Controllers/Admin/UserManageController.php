@@ -9,7 +9,7 @@ class UserManageController extends Controller
 {
     public function index()
 	{
-		$data[ 'user' ] 						= \App\User::where('role_id',2)->paginate(20);
+		$data[ 'user' ] 						= \App\User::where('role_id',3)->paginate(20);
 
 		return view( 'pages.users.list', compact( 'data' ) );
 	}

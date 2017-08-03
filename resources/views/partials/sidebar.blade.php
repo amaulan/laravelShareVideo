@@ -36,14 +36,10 @@
         </ul>
       </li>
       <li class="sub-menu">
-        <a href="javascript:;" >
-          <i class=" fa fa-bar-chart-o"></i>
+        <a href="{{ url('admin/manage/comment') }}" >
+          <i class="fa fa-bar-chart-o"></i>
           <span>Comment</span>
         </a>
-        <ul class="sub">
-          <li><a  href="morris.html">Morris</a></li>
-          <li><a  href="chartjs.html">Chartjs</a></li>
-        </ul>
       </li>
       <li class="sub-menu">
         <a href="javascript:;" >

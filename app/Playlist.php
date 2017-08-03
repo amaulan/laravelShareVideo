@@ -21,6 +21,6 @@ class Playlist extends Model
     }
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class,'playlist_id','id');
     }
 }

@@ -24,6 +24,15 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::post('/edited',							'Admin\CategoryController@edited');
 		});
 
+		Route::group( ['prefix' => 'comment'], function(){
+			Route::get('/',									'Admin\CommentManageController@index');
+			Route::get('/create',							'Admin\CommentManageController@create');
+			Route::get('/detail/{id}',						'Admin\CommentManageController@detail');
+			Route::get('/edit',								'Admin\CommentManageController@edit');
+			Route::get('/update',							'Admin\CommentManageController@update');
+			Route::post('/edited',							'Admin\CommentManageController@edited');
+		});
+
 		Route::group( ['prefix' => 'admin'], function(){
 			Route::get('/',									'Admin\AdminManageController@index')->name('admin');
 			Route::get('/create',							'Admin\AdminManageController@create')->name('admin.create');
