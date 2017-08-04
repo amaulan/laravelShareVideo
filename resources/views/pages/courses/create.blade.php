@@ -1,14 +1,12 @@
 @extends('partials.master')
 @section('content')
 <h3><i class="fa fa-angle-right"></i> {{ $data['pages']['title'] }}</h3>
+
+@include('partials.notif')
+
+
 <div class="row mt">
-	<div class="col-lg-12">
-		<a href="{{ url('admin/manage/course/create') }}" class="btn btn-success">Add New Course</a>
-		{{-- <p>Place your content here.</p> --}}
-	</div>
-</div>
-<div class="row mt">
-	<form action="{{ url('/admin/manage/course/store') }}" method="POST">
+	<form action="{{ url('/admin/manage/course/store') }}" method="POST" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<div class="col-lg-8">
 		<div class="form-panel">
@@ -29,7 +27,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 col-sm-2 control-label">Course Picture</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="course_picture">
+						<input type="file" name="course_picture">
 					</div>
 				</div>
 				<div class="form-group">
@@ -46,7 +44,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 col-sm-2 control-label">Category</label>
 					<div class="col-sm-10">
-						<select name="category_id[]" class="form-control selectpicker" multiple="">
+						<select name="category_id" class="form-control selectpicker" multiple="">
 							@foreach($data['data']['categories'] as $index => $category)
 								<option value="{{ $category->id }}" style="background: {{ $category->category_color }}">{{ $category->category_name }}</option>
 							@endforeach

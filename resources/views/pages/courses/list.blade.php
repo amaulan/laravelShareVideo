@@ -7,13 +7,17 @@
 		{{-- <p>Place your content here.</p> --}}
 	</div>
 </div>
+
 <div class="row mt">
+
+@include('partials.notif')
+
 	<br><br>
 	@foreach($data['courses'] as $index => $course)
 	<div class="col-lg-4 col-md-4 col-sm-4 mb">
 		<a href="{{ url('admin/manage/course/'.$course->id.'/playlist') }}">
 		<div class="content-panel pn">
-			<div id="blog-bg">
+			<div id="blog-bg" style="background: url(http://s3.sobatdev.com.kilatstorage.com/files/course/{{$course->course_picture}}) no-repeat center top;">
 				<div class="badge badge-popular" style="word-wrap: break-word;">{{ $course->levels()->first()->level_name }}</div>
 				<div class="blog-title">{{ $course->course_name }}</div>
 			</div>
