@@ -57,23 +57,22 @@ class CourseController extends Controller
 
 	public function store(Request $request)
 	{
-
-		$request 									= $request->all();
-
+		$request									=	$request->all();
 
 		$validator = \Validator::make($request, [//->Memanggil class Validator dan mengambil semua data inputan
             'course_name' 							=> 'required|string|max:50|min:2',
             'course_desc' 							=> 'required|string|max:255|min:2',
-            'course_picture' 						=> 'required|string|file|image',
-            'level_id' 								=> 'required|max:50|min:2',//->Memfilter data dari inputan
-            'category_id' 							=> 'required|max:50|min:2'//->Memfilter data dari inputan
+            'course_picture' 						=> 'required|file|image',
+            'level_id' 								=> 'required|max:50',//->Memfilter data dari inputan
+            'category_id' 							=> 'required|max:50',//->Memfilter data dari inputan
+            'playlist_add' 							=> 'required|integer'//->Memfilter data dari inputan
         ]);
 
         if ($validator->fails()) {
 			return \Redirect::back()->with(ERR_MSG, $validator->errors()->all() )->withInput($request);
 		}
 
-		$file 								= $request->file('course_picture');
+		$file 								= $request['course_picture'];
     	$filePath							= $file->getPathName();
     	$name 								= $file->getClientOriginalName();
 

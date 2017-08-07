@@ -80,9 +80,12 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::group( ['prefix' => '{course_id}/playlist'], function(){
 				Route::get('/',								'Admin\PlaylistController@index');
 				Route::get('/create',						'Admin\PlaylistController@create');
+				Route::get('/commentar',					'Admin\PlaylistController@commentar');
+				Route::get('/edit',							'Admin\PlaylistController@edit');
+				Route::post('/update/{playlist_id}',		'Admin\PlaylistController@update');
 				Route::post('/store-video',					'Admin\PlaylistController@storeVideo');
 				Route::post('/store',						'Admin\PlaylistController@store');
-				Route::get('/delete/{playlist_id}',					'Admin\PlaylistController@destroy');
+				Route::get('/delete/{playlist_id}',			'Admin\PlaylistController@destroy');
 			});
 
 		});
