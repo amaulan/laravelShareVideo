@@ -8,8 +8,15 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::post('login',									'LoginController@doLogin');
 	Route::get('logout',									'LoginController@doLogout');
 
+	Route::get('/home',								'User\HomeController@index');
+	Route::get('/detail/{id}',						'User\HomeController@detail');
+	Route::get('/watch/{id}',						'User\HomeController@watch');
+	Route::get('/update',							'User\HomeController@update');
+	Route::get('/edit',								'User\HomeController@edit');
+	Route::post('/edited',							'User\HomeController@edited');
 
-	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth'], function(){
+
+	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth:web'], function(){
 
 		Route::get('/', 									'Admin\DashboardController@index');
 		Route::get('/dashboard', 							'Admin\DashboardController@index');
