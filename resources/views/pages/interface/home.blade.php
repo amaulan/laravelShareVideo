@@ -1,6 +1,9 @@
 @extends('pages.interface.template')
 @section('body')
 
+<div class="col-md-12" style="padding:5px;text-align:center;">
+	@include('partials.notif')
+</div>
 	@foreach($data['course'] as $index => $course)
 
 	<div class="col-md-3" style="padding:15px;">

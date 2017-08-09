@@ -11,9 +11,19 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::get('/home',								'User\HomeController@index');
 	Route::get('/detail/{id}',						'User\HomeController@detail');
 	Route::get('/watch/{id}',						'User\HomeController@watch');
-	Route::get('/update',							'User\HomeController@update');
+	Route::post('/comment',							'User\HomeController@comment');
+	Route::get('/create_feedback',					'User\HomeController@create_feedback');
+	Route::post('/feedbackstore',					'User\HomeController@feedbackstore');
+	Route::get('/subscribe',						'User\HomeController@subscribe');
+	Route::post('/subscribestore',					'User\HomeController@subscribestore');
 	Route::get('/edit',								'User\HomeController@edit');
 	Route::post('/edited',							'User\HomeController@edited');
+	Route::get('/daftar',							'User\HomeController@daftar');
+	Route::post('/daftarstore',						'User\HomeController@daftarstore');
+	Route::get('/userlog',							'User\HomeController@userlog');
+	Route::post('/userdo',							'User\HomeController@userdo');
+	Route::get('/userout',							'User\HomeController@userout');
+
 
 
 	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth:web'], function(){
