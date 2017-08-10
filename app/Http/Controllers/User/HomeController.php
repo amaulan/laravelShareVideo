@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Mail;
+use App\Mail\VerificationMail;
 
 class HomeController extends Controller
 {
@@ -79,7 +81,7 @@ class HomeController extends Controller
             $data['id']                                     =       $id; 
             $data['video']                                  =       \App\Playlist::where('id',$id)->get();
             $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->paginate(5);
+            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
             return view('pages.interface.video_list', compact('data'));  
         }else{
             if (Auth::check()) {
@@ -91,14 +93,14 @@ class HomeController extends Controller
             $data['id']                                     =       $id;
             $data['video']                                  =       \App\Playlist::where('id',$id)->get();
             $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->paginate(5); 
+            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get(); 
              return view('pages.interface.video_list', compact('data'));  
 
             }else{
             $data['id']                                     =       $id; 
             $data['video']                                  =       \App\Playlist::where('id',$id)->get();
             $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->paginate(5);
+            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
             return view('pages.interface.video_list', compact('data'));
             }
         }
@@ -130,15 +132,27 @@ class HomeController extends Controller
         if ($validname->fails()) {
            return \Redirect::back()->with('err_msg', $validname->errors()->all() )->withInput($request->all());
         }
-
+        $request->verification_code                       = str_random(10);
         $daftar                                           =       new \App\User;
         $daftar->username                                 =       $request->username;
         $daftar->email                                    =       $request->email;
         $daftar->password                                 =       bcrypt($request->password);
         $daftar->user_github                              =       $request->user_github;
+        $daftar->v_code                                   =       $request->verification_code;
         $daftar->role_id                                  =       3;
         $daftar->save();
+        Mail::send(new VerificationMail());//->Membuat akun user
         return \Redirect::to('home')->with('sc_msg', 'Successfuly Register');
+    }
+    public function update_status(Request $request)
+    {
+        \App\User::where('v_code',$request->verification_code)
+          ->update(['status' => 1,'updated_at' => date('Y-m-d H:i:s')]);
+       //  DB::table('users')->where('verification_code',$request->verification_code)->update([//->Melakukan update jika data benar berdasarkan id Todo
+       //      'status' => 1,
+       //      'updated_at' => date('Y-m-d H:i:s')
+       // ]);
+         return \Redirect::to('userlog')->with('sc_msg', 'Email Verified');
     }
     public function userlog()
     {
@@ -148,8 +162,14 @@ class HomeController extends Controller
     {
         $dataLogin                                      = $request->only('email', 'password');
 
-        if(\Auth::attempt($dataLogin))
+        if(\Auth::attempt($dataLogin)){
+            if (Auth::user()->status == 0) {
+            \Auth::logout();
+            return \Redirect::back()
+                ->with('err_msg', 'Please verified your email');
+            }
             return \Redirect::to('home')->with('sc_msg', 'Welcome '.Auth::user()->username);
+        }
 
         return \Redirect::to('login')
                 ->with('err_msg', 'Login Failed, Username or Password Wrong')

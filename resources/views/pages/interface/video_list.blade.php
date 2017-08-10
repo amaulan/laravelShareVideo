@@ -64,9 +64,6 @@
 
 				@endforeach
 
-				<div class="col-md-12" align="center">
-					{{ $data['comment']->links() }}
-				</div>
 			</div>
 		</div>
 		<div class="col-md-4" style="padding:05px;">

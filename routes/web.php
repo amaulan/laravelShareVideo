@@ -20,13 +20,14 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::post('/edited',							'User\HomeController@edited');
 	Route::get('/daftar',							'User\HomeController@daftar');
 	Route::post('/daftarstore',						'User\HomeController@daftarstore');
+	Route::get('/update_status', 					'User\HomeController@update_status');
 	Route::get('/userlog',							'User\HomeController@userlog');
 	Route::post('/userdo',							'User\HomeController@userdo');
 	Route::get('/userout',							'User\HomeController@userout');
 
 
 
-	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth:web'], function(){
+	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'filter:auth:web'], function(){
 
 		Route::get('/', 									'Admin\DashboardController@index');
 		Route::get('/dashboard', 							'Admin\DashboardController@index');
