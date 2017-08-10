@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration {
 			$table->string('course_name');
 			$table->text('course_desc', 65535);
 			$table->string('course_picture');
+			$table->integer('plyalist_add')->default(0);
 			$table->boolean('permission')->default(0);
 			$table->boolean('is_publish')->default(0);
 			$table->boolean('can_comment')->default(1);

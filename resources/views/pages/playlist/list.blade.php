@@ -59,10 +59,19 @@
 							<div class="task-title">
 								<span class="task-title-sp">{{ $playlist->playlists_name }}</span>
 								<span class="badge bg-theme">{{ $playlist->video_length }}</span>
+								@if($playlist->can_comment != 1)
+										<span class="badge bg-theme04">Can't Comment</span>
+								@else
+										<span class="badge bg-theme03">Can Comment</span>
+								@endif
 								<div class="pull-right hidden-phone">
-									<button class="btn btn-success btn-xs"><i class=" fa fa-check"></i></button>
-									<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-									<a onclick="return confirm('Are You Sure ?')" href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/delete/'.$playlist->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
+									@if($playlist->can_comment != 1)
+										<a href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/commentar/') }}?can_comment=1&id={{ $playlist->id }}" class="btn btn-success btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tooltip on top"><i class="fa fa-check"></i></a>
+									@else
+										<a href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/commentar/') }}?can_comment=0&id={{ $playlist->id }}" class="btn btn-danger btn-xs"><i class="fa fa-ban"></i></a>
+									@endif
+									<a href="{{ url('admin/manage/course/'.$playlist->course_id.'/playlist/edit/')}}?id={{ $playlist->id }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+									<a onclick="return confirm('Are You Sure ?')" href="{{ url('admin/manage/course/'.Request::segment(4).'/playlist/delete/') }}?id={{ $playlist->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></a>
 								</div>
 							</div>
 						</li>

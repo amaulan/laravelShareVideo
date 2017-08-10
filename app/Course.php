@@ -15,6 +15,7 @@ class Course extends Model
         'can_comment',
         'complete',
         'published_at',
+        'playlist_add',
         'user_id',
         'level_id'
     ];

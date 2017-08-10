@@ -31,6 +31,12 @@
 					</div>
 				</div>
 				<div class="form-group">
+						<label class="col-sm-2 col-sm-2 control-label">Playlist Will Add</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" name="playlist_add">
+						</div>
+					</div>
+				<div class="form-group">
 					<label class="col-sm-2 col-sm-2 control-label">Level</label>
 					<div class="col-sm-10">
 						<select name="level_id" class="form-control">
@@ -40,13 +46,12 @@
 						</select>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label class="col-sm-2 col-sm-2 control-label">Category</label>
 					<div class="col-sm-10">
-						<select name="category_id" class="form-control selectpicker" multiple="">
+						<select name="category_id[]" class="form-control selectpicker" multiple="">
 							@foreach($data['data']['categories'] as $index => $category)
-								<option value="{{ $category->id }}" style="background: {{ $category->category_color }}">{{ $category->category_name }}</option>
+								<option value="{{ $category->id }}" style="background: {{ $category->category_color }}" checked="">{{ $category->category_name }}</option>
 							@endforeach
 						</select>
 					</div>

@@ -1,0 +1,54 @@
+div > img.course{
+	height:200px;
+	width:100%;
+}.course-head{
+	background-color: #3C4A59;
+	padding: 10px;
+	color: #fff;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px; 
+}.course-body{
+	border: 1px solid #3C4A59;
+	padding: 10px; 
+}
+.course-footer{
+	background-color: #3C4A59;
+	padding: 0px; 
+	color: #fff;
+	border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+}.list{
+	background-color:#7C8A99;
+	padding:10px;
+	margin:5px 0px;
+	border-radius: 5px;
+	color: #fff;
+}.footer{
+	padding:0px;
+	background-color:#eee;
+	margin-top:150px;
+}.brand-list{
+	padding:15px;
+	background-color: #18bc9c;
+	color: #fff;
+	font-weight: bolder;
+	border-top-right-radius:25px;
+	border-top-left-radius:25px;
+	font-size: 18px;
+}.feedback-head{
+	padding: 15px;
+	background-color: #18bc9c;
+	color: #fff;
+	font-weight: bolder;
+	font-size: 20px;
+	border-top-right-radius:15px;
+	border-top-left-radius:15px;
+}.feedback-body{
+	padding: 20px;
+	background-color: #3C4A59;
+	color: #fff;
+	font-weight: bolder;
+	font-size: 17px;
+	border-bottom-right-radius:15px;
+	border-bottom-left-radius:15px;
+}

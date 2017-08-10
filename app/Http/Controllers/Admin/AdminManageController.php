@@ -41,7 +41,7 @@ class AdminManageController extends Controller
 		$user 										= new \App\User;
 		$user->username 							= $request->username;
 		$user->email 								= $request->email;
-		$user->password 							= $request->password;
+		$user->password 							= bcrypt($request->password);
 		$user->user_github 							= $request->user_github;
 		$user->role_id 								= 2;
 		$user->status 								= 1;
@@ -98,7 +98,7 @@ class AdminManageController extends Controller
 		$model->delete();
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( SC_MSG, 'Successfuly Deleted');
+						  ->with( SC_MSG, 'Admin successfuly Deleted');
 
 	}
 	public function dummy()

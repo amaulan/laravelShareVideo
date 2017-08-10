@@ -8,8 +8,25 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::post('login',									'LoginController@doLogin');
 	Route::get('logout',									'LoginController@doLogout');
 
+	Route::get('/home',								'User\HomeController@index');
+	Route::get('/detail/{id}',						'User\HomeController@detail');
+	Route::get('/watch/{id}',						'User\HomeController@watch');
+	Route::post('/comment',							'User\HomeController@comment');
+	Route::get('/create_feedback',					'User\HomeController@create_feedback');
+	Route::post('/feedbackstore',					'User\HomeController@feedbackstore');
+	Route::get('/subscribe',						'User\HomeController@subscribe');
+	Route::post('/subscribestore',					'User\HomeController@subscribestore');
+	Route::get('/edit',								'User\HomeController@edit');
+	Route::post('/edited',							'User\HomeController@edited');
+	Route::get('/daftar',							'User\HomeController@daftar');
+	Route::post('/daftarstore',						'User\HomeController@daftarstore');
+	Route::get('/userlog',							'User\HomeController@userlog');
+	Route::post('/userdo',							'User\HomeController@userdo');
+	Route::get('/userout',							'User\HomeController@userout');
 
-	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth'], function(){
+
+
+	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'auth:web'], function(){
 
 		Route::get('/', 									'Admin\DashboardController@index');
 		Route::get('/dashboard', 							'Admin\DashboardController@index');
@@ -80,9 +97,12 @@ Route::group( [ 'middleware' => 'web' ], function(){
 			Route::group( ['prefix' => '{course_id}/playlist'], function(){
 				Route::get('/',								'Admin\PlaylistController@index');
 				Route::get('/create',						'Admin\PlaylistController@create');
+				Route::get('/commentar',					'Admin\PlaylistController@commentar');
+				Route::get('/edit',							'Admin\PlaylistController@edit');
+				Route::post('/update/{playlist_id}',		'Admin\PlaylistController@update');
 				Route::post('/store-video',					'Admin\PlaylistController@storeVideo');
 				Route::post('/store',						'Admin\PlaylistController@store');
-				Route::get('/delete/{playlist_id}',					'Admin\PlaylistController@destroy');
+				Route::get('/delete/{playlist_id}',			'Admin\PlaylistController@destroy');
 			});
 
 		});
