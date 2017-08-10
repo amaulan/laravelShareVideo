@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+   
     	$data['course']						                =       \App\Course::paginate(8);
     	return view('pages.interface.home', compact('data'));
     }
@@ -34,7 +35,7 @@ class HomeController extends Controller
         $feedback                                           =       new \App\Feedback;
         $feedback->feedback_text                            =       $request->feedback_text;
         $feedback->save();
-        return \Redirect::to('home')->with('sc_msg', 'Feedback successfuly send');
+        return \Redirect::to('/')->with('sc_msg', 'Feedback successfuly send');
 
     }
 
@@ -56,7 +57,7 @@ class HomeController extends Controller
         $subscribe                                          =       new \App\Subscribe;
         $subscribe->email                                   =       $request->email;
         $subscribe->save();
-        return \Redirect::to('home')->with('sc_msg', 'Successfuly subscribe');
+        return \Redirect::to('/')->with('sc_msg', 'Successfuly subscribe');
 
     }
 
@@ -66,44 +67,39 @@ class HomeController extends Controller
     	return view('pages.interface.list_playlist', compact('data'));
     }
 
-    public function watch(Request $request,$id)
-    {
-        $validname = \Validator::make($request->all(), [//->Memanggil class Validator dan mengambil semua data inputan
-            'playlist_name'                         => 'required|string|min:2|unique:watches'
-        ]);
+    public function watch(Request $request,$id){
 
-        $validip = \Validator::make($request->all(), [//->Memanggil class Validator dan mengambil semua data inputan
-            'playlist_name'                         => 'required|ip|unique:watches'
-        ]);
+            $check = \App\Playlist::findOrFail($id);
 
-        if (($validname->fails())&&($validip->fails())) {
-
-            $data['id']                                     =       $id; 
-            $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-            $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
-            return view('pages.interface.video_list', compact('data'));  
-        }else{
-            if (Auth::check()) {
-            $input                                          =       new \App\Watch;
-            $input->playlist_name                           =       $request->playlist_name;
-            $input->ip                                      =       $request->ip();
-            $input->save();
-
-            $data['id']                                     =       $id;
-            $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-            $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get(); 
-             return view('pages.interface.video_list', compact('data'));  
-
-            }else{
-            $data['id']                                     =       $id; 
-            $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-            $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
-            return view('pages.interface.video_list', compact('data'));
+            //chceking if authenticate
+            if(\Auth::check())
+            {
+                $ip             = $request->ip();
+                $checkView      = \App\Watch::where('ip',$ip)
+                                            ->where('playlist_name', $request->playlist_name)
+                                            ->get();
+                //checking if belum pernah melihat playlist
+                if($checkView->count() != 1){
+                    $newWatch   = \App\Watch::create([ 'ip' => $ip, 'playlist_name' => $request->playlist_name ]);
+                    $data['id']                                     =       $id; 
+                    $data['video']                                  =       \App\Playlist::where('id',$id)->get();
+                    $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
+                    $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
+                    return view('pages.interface.video_list', compact('data'));
+                }
+                    $data['id']                                     =       $id; 
+                    $data['video']                                  =       \App\Playlist::where('id',$id)->get();
+                    $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
+                    $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
+                    return view('pages.interface.video_list', compact('data'));
             }
-        }
+
+                $data['id']                                     =       $id; 
+                $data['video']                                  =       \App\Playlist::where('id',$id)->get();
+                $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
+                $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
+                return view('pages.interface.video_list', compact('data'));
+
     }
     public function comment(Request $request)
     {
@@ -142,7 +138,7 @@ class HomeController extends Controller
         $daftar->role_id                                  =       3;
         $daftar->save();
         Mail::send(new VerificationMail());//->Membuat akun user
-        return \Redirect::to('home')->with('sc_msg', 'Successfuly Register');
+        return \Redirect::to('/')->with('sc_msg', 'Successfuly Register');
     }
     public function update_status(Request $request)
     {
@@ -168,10 +164,10 @@ class HomeController extends Controller
             return \Redirect::back()
                 ->with('err_msg', 'Please verified your email');
             }
-            return \Redirect::to('home')->with('sc_msg', 'Welcome '.Auth::user()->username);
+            return \Redirect::to('/')->with('sc_msg', 'Welcome '.Auth::user()->username);
         }
 
-        return \Redirect::to('login')
+        return \Redirect::to('userlog')
                 ->with('err_msg', 'Login Failed, Username or Password Wrong')
                 ->withInput($dataLogin);
     }

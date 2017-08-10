@@ -12,11 +12,14 @@
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="content-panel">
+			@if(Auth::user()->role_id == 1)
 			<h4 class="">
 			<a href="{{ url('admin/manage/admin/create') }}" class="btn btn-success">
 			<i class="fa fa-plus"></i> ADD
 			</a>
 			</h4>
+			@else
+			@endif
 			<table class="table table-bordered">
 				<thead class="cf">
 					<tr>
@@ -25,7 +28,10 @@
 						<th class="hidden-phone">Email</th>
 						<th class="hidden-phone">Admin Github</th>
 						<th class="text-center">Total Course</th>
+						@if(Auth::user()->role_id == 1)
 						<th class="text-center">Action</th>
+						@else
+						@endif
 					</tr>
 				</thead>
 				<tbody>
@@ -38,10 +44,14 @@
 						<td class="text-center">
 							<strong>{{ $admin->courses()->count() }}</strong>
 						</td>
+						@if(Auth::user()->role_id == 1)
 						<td class="text-center" data-title="Price">
 							<a href="{{ url('admin/manage/admin/edit/'.$admin->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
 							<a href="{{ url('admin/manage/admin/destroy/'.$admin->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
 						</td>
+						@else
+						@endif
+
 					</tr>
 					@endforeach
 				</tbody>

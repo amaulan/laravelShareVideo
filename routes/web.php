@@ -8,7 +8,7 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::post('login',									'LoginController@doLogin');
 	Route::get('logout',									'LoginController@doLogout');
 
-	Route::get('/home',								'User\HomeController@index');
+	Route::get('/',								'User\HomeController@index');
 	Route::get('/detail/{id}',						'User\HomeController@detail');
 	Route::get('/watch/{id}',						'User\HomeController@watch');
 	Route::post('/comment',							'User\HomeController@comment');

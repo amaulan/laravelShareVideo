@@ -74,7 +74,9 @@ class CourseController extends Controller
 
 		$file 								= $request['course_picture'];
     	$filePath							= $file->getPathName();
-    	$name 								= $file->getClientOriginalName();
+    	$picture 							= $file->getClientOriginalName();
+    	$picture2 							= str_replace([':', '\'', '/', '*','!','@','#',' ','%','^','&','(',')','_','+','|'],'', $picture);
+    	$name 								= strtolower($picture2);
 
     	$s3 								= new CloudKilat;
     	$response 							= $s3->store( $filePath, S3_COURSE, $name);

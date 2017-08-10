@@ -17,10 +17,10 @@ class filter
     {
         if (\Auth::check()) {
             if (\Auth::user()->role_id == 3) {
-                return \Redirect::to('home');
+                return \Redirect::to('/');
             }
             return $next($request);
         }
-        return \Redirect::to('home');
+        return \Redirect::to('/');
     }
 }
