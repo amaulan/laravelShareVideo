@@ -69,7 +69,11 @@ class HomeController extends Controller
 
     public function watch(Request $request,$id){
 
-            $check = \App\Playlist::findOrFail($id);
+            $check                                          =       \App\Playlist::findOrFail($id);
+            $data['id']                                     =       $id; 
+            $data['video']                                  =       \App\Playlist::where('id',$id)->get();
+            $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
+            $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
 
             //chceking if authenticate
             if(\Auth::check())
@@ -81,23 +85,12 @@ class HomeController extends Controller
                 //checking if belum pernah melihat playlist
                 if($checkView->count() != 1){
                     $newWatch   = \App\Watch::create([ 'ip' => $ip, 'playlist_name' => $request->playlist_name ]);
-                    $data['id']                                     =       $id; 
-                    $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-                    $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-                    $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
-                    return view('pages.interface.video_list', compact('data'));
+    
+                    
                 }
-                    $data['id']                                     =       $id; 
-                    $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-                    $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-                    $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
-                    return view('pages.interface.video_list', compact('data'));
+                
             }
 
-                $data['id']                                     =       $id; 
-                $data['video']                                  =       \App\Playlist::where('id',$id)->get();
-                $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
-                $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
                 return view('pages.interface.video_list', compact('data'));
 
     }
@@ -122,7 +115,7 @@ class HomeController extends Controller
             'username'                                 => 'required|string|max:50|min:2|unique:users',
             'email'                                    => 'required|email|min:2|unique:users',
             'password'                                 => 'required|string|max:50|min:8',
-            'user_github'                                 => 'required|string|max:50|min:2|unique:users',
+            'user_github'                              => 'required|string|max:50|min:2|unique:users',
         ]);
 
         if ($validname->fails()) {

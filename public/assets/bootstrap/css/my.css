@@ -4,9 +4,7 @@ div > img.course{
 }.course-head{
 	background-color: #3C4A59;
 	padding: 10px;
-	color: #fff;
-	border-top-right-radius:5px;
-	border-top-left-radius:5px; 
+	color: #fff; 
 }.course-body{
 	border: 1px solid #3C4A59;
 	padding: 10px; 
@@ -15,14 +13,26 @@ div > img.course{
 	background-color: #3C4A59;
 	padding: 0px; 
 	color: #fff;
-	border-bottom-right-radius:5px;
-	border-bottom-left-radius:5px;
 }.list{
 	background-color:#7C8A99;
 	padding:10px;
 	margin:5px 0px;
 	border-radius: 5px;
 	color: #fff;
+}.sub-list{
+	background-color:#eee;
+	padding:10px;
+	margin:0px 0px;
+	border-radius: 5px;
+	color: #3C4A59;
+	border-bottom: 1px solid #7C8A99;
+}.sub-list:hover{
+	background-color:#7C8A99;
+	padding:10px;
+	margin:0px 0px;
+	border-radius: 5px;
+	color: #fff;
+	border-bottom: 1px solid #7C8A99;
 }.footer{
 	padding:0px;
 	background-color:#eee;
@@ -32,8 +42,6 @@ div > img.course{
 	background-color: #18bc9c;
 	color: #fff;
 	font-weight: bolder;
-	border-top-right-radius:25px;
-	border-top-left-radius:25px;
 	font-size: 18px;
 }.feedback-head{
 	padding: 15px;
@@ -51,4 +59,36 @@ div > img.course{
 	font-size: 17px;
 	border-bottom-right-radius:15px;
 	border-bottom-left-radius:15px;
+}
+a>div.col-md-3>div.shadow{
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+	padding: 15px;
+}
+a>div.col-md-3>div.shadow:hover{
+	box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+	padding: 15px;
+}.course-banner{
+	background: url(../../img/space.jpg) no-repeat center top;
+	text-align: center;
+	padding: 40px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	font-size: 50px;
+	font-weight: bolder;
+	color: #fff;
+}
+@media (max-width: 800px){
+	.course-banner{
+		font-size: 40px;
+	}
+}
+@media (max-width: 600px){
+	.course-banner{
+		font-size: 20px;
+	}
+}
+@media (max-width: 400px){
+	.course-banner{
+		font-size: 17px;
+	}
 }

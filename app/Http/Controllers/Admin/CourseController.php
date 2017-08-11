@@ -12,11 +12,6 @@ class CourseController extends Controller
 {
 	private $userId;
 
-	public function __construct()
-	{
-		// $this->userId 				= \Auth::user()->id;
-	}
-
 	public function index()
 	{
 		return view( 'pages.courses.list' );
@@ -83,7 +78,7 @@ class CourseController extends Controller
 
 		$userId 					= \Auth::user()->id;
 		$request['user_id']			= $userId;
-		$request['course_picture']	= strtolower($name);
+		$request['course_picture']	= $name;
 		$data 						= collect($request)->map(function($i){
 			if($i == 'on')
 				return 1;
