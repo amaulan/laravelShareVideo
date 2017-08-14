@@ -35,7 +35,7 @@
 							<strong>{{ $comment->users()->first()->username }}</strong>
 						</td>
 						<td class="text-center hidden-phone">
-							{{ $comment->playlists()->first()->playlists_name }}
+							<a href="{{url('watch/'.$comment->playlist_id)}}?course_id={{$comment->playlists()->first()->course_id}}&playlist_name={{$comment->playlists()->first()->playlists_name}}">{{ $comment->playlists()->first()->playlists_name }}</a>
 						</td>
 						<td class="text-center hidden-phone" data-title="Price">
 							@if($comment->is_blocked == 1)

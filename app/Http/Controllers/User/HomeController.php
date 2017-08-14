@@ -63,7 +63,7 @@ class HomeController extends Controller
         if ($validname->fails()) {
 
            return \Redirect::back()
-                    ->with('err_msg', $validname->errors()->all() )
+                    ->with('err_subs', $validname->errors()->all() )
                     ->withInput($request->all());
         }
 
@@ -73,7 +73,7 @@ class HomeController extends Controller
 
         $subscribe->save();
         return \Redirect::to('/')
-                    ->with('sc_msg', 'Successfuly subscribe');
+                    ->with('sc_subs', 'Thanks For Your Subscribe');
 
     }
 
