@@ -49,16 +49,14 @@ div > img.course{
 	color: #fff;
 	font-weight: bolder;
 	font-size: 20px;
-	border-top-right-radius:15px;
-	border-top-left-radius:15px;
+
 }.feedback-body{
 	padding: 20px;
 	background-color: #3C4A59;
 	color: #fff;
 	font-weight: bolder;
 	font-size: 17px;
-	border-bottom-right-radius:15px;
-	border-bottom-left-radius:15px;
+
 }
 a>div.col-md-3>div.shadow{
 	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);

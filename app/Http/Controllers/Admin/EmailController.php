@@ -8,24 +8,27 @@ use App\Http\Controllers\Controller;
 class EmailController extends Controller
 {
 	public function index(){
-		$data['data']['allEmail'] 	= $this->getAllEmail();
+		$data['data']['allEmail'] 					= 	$this->getAllEmail();
+
 		return view('pages.mails.compose', compact( 'data' ));
 	}
 
 	public function store(Request $request)
 	{
-		$subject		= $request->subject;
-		$content 		= $request->content;
+		$subject									= 	$request->subject;
+		$content 									= 	$request->content;
 
-		$allEmail 		= $request->receipt;
+		$allEmail 									= 	$request->receipt;
 		if( $request->everyone == 'on')
 		{
-			$allEmail 	= $this->getAllEmail();
+
+			$allEmail 								= 	$this->getAllEmail();
 		} 
 
 		$this->sendMail( $allEmail, $subject, $content );
 
-		return \Redirect::back()->with('sc_msg', 'Successfuly Send Email');
+		return \Redirect::back()
+				->with('sc_msg', 'Successfuly Send Email');
 	}
 
 	public function sendMail( $allMail, $subject, $content )
@@ -37,9 +40,9 @@ class EmailController extends Controller
 
 	public function getAllEmail()
 	{
-		$subcsriberEmail 		=	\App\Subscribe::pluck('email');
+		$subcsriberEmail 							=	\App\Subscribe::pluck('email');
 
-		$userEmail				=  \App\User::pluck('email');
+		$userEmail									=  \App\User::pluck('email');
 
 		return $subcsriberEmail
 				->merge($userEmail)
@@ -48,18 +51,22 @@ class EmailController extends Controller
 
 	public function create()
 	{
-		$data['data']['allEmail'] 	= $this->getAllEmail();
+		$data['data']['allEmail'] 					= 	$this->getAllEmail();
+
 		return view('pages.mails.compose', compact( 'data' ));
 	}
 
 	public function subscriberList()
 	{
-		$data['subscribes']									=	\App\Subscribe::paginate(20);
+		$data['subscribes']							=	\App\Subscribe::paginate(20);
+
 		return view('pages.subcriber.list', compact( 'data' ));
 	}
+	
 	public function feedbackList()
 	{
-		$data['feedbacks']									=	\App\Feedback::paginate(20);
+		$data['feedbacks']							=	\App\Feedback::paginate(20);
+
 		return view('pages.feedbacks.list', compact( 'data' ));
 	}
 }

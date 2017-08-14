@@ -31,16 +31,21 @@ class LevelController extends Controller
 	{
 		$data 										= $request->only('level_name');
 		$validation 								= \Validator::make( $data , [
+
 				'level_name' 						=> "required|min:3|max:30"
+		
 		]);
 
-		if ($validation->fails())
-			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
+		if ($validation->fails()){
+			return \Redirect::back()
+					->with( ERR_MSG, $validation->errors()->all() )
+					->withInput( $data );
+		}
 
 		\App\Level::create( $data );
 
 		return \Redirect::to( $this->routeUri )
-						->with( SC_MSG, 'Successfuly Created');;
+					->with( SC_MSG, 'Successfuly Created');;
 	}
 
 	public function edit($id)
@@ -56,16 +61,22 @@ class LevelController extends Controller
 
 		$data 										= $request->only( 'level_name' );
 		$validation 								= \Validator::make( $data , [
+
 				'level_name' 						=> "required|min:3|max:30"
+		
 		]);
 
-		if ($validation->fails())
-			return \Redirect::back()->with( ERR_MSG, $validation->errors()->all() )->withInput( $data );
+		if ($validation->fails()){
+
+			return \Redirect::back()
+					->with( ERR_MSG, $validation->errors()->all() )
+					->withInput( $data );
+		}
 
 		$model->update( $data );
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( SC_MSG, 'Successfuly Updated');
+					->with( SC_MSG, 'Successfuly Updated');
 
 	}
 
@@ -75,7 +86,7 @@ class LevelController extends Controller
 		$model->delete();
 
 		return \Redirect::to( $this->routeUri )
-						  ->with( SC_MSG, 'Successfuly Deleted');
+					->with( SC_MSG, 'Successfuly Deleted');
 
 	}
 }

@@ -30,6 +30,7 @@ class VerificationMail extends Mailable
      */
     public function build(Request $request)
     {
-        return $this->view('pages.mails.verification',['msg'=>$request->email,'vcode'=>$request->verification_code])->to($request->email);
+        return $this->view('pages.mails.verification',['msg'=>$request->email,'vcode'=>$request->verification_code])
+                    ->to($request->email);
     }
 }
