@@ -3,7 +3,7 @@
 <div class="col-md-12 course-banner" style="margin-top:0px;">
 Learn New Things With SobatDev
 </div>
-<div class="col-md-12" style="padding:0px;background-color:#eee;">
+<div class="col-md-12" style="padding:0px;background-color:#fff;">
 	<div class="col-md-4" style="padding:15px;" align="center">
 		<h3>
 			<span class="glyphicon glyphicon-time"></span>

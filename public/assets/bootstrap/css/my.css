@@ -1,18 +1,25 @@
+body{
+	background-color: #eee;
+}
 div > img.course{
 	height:200px;
 	width:100%;
 }.course-head{
 	background-color: #3C4A59;
-	padding: 10px;
+	padding: 20px;
 	color: #fff; 
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }.course-body{
-	border: 1px solid #3C4A59;
-	padding: 10px; 
+	padding: 10px;
+	background-color: #fff; 
 }
 .course-footer{
 	background-color: #3C4A59;
 	padding: 0px; 
 	color: #fff;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }.list{
 	background-color:#7C8A99;
 	padding:10px;
@@ -20,7 +27,7 @@ div > img.course{
 	border-radius: 5px;
 	color: #fff;
 }.sub-list{
-	background-color:#eee;
+	background-color:#fff;
 	padding:10px;
 	margin:0px 0px;
 	border-radius: 5px;
@@ -35,8 +42,11 @@ div > img.course{
 	border-bottom: 1px solid #7C8A99;
 }.footer{
 	padding:0px;
-	background-color:#eee;
+	background-color:#fff;
 	margin-top:150px;
+}.footer-content{
+	padding:10px 20px;
+	background-color:#fff;
 }.brand-list{
 	padding:15px;
 	background-color: #18bc9c;
@@ -59,7 +69,7 @@ div > img.course{
 
 }
 a>div.col-md-3>div.shadow{
-	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
 	padding: 15px;
 }
 a>div.col-md-3>div.shadow:hover{

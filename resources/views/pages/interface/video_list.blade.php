@@ -3,7 +3,7 @@
 
 	<div class="col-md-12" style="padding:10px;m">
 		<div class="col-md-8" style="padding:10px;">
-			<div class="col-md-12" style="background-color:#eee;padding:10px;box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);">
+			<div class="col-md-12" style="background-color:#fff;padding:10px;box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);">
 				@if(Auth::check())
 				<div class="col-md-12" style="padding:0px;">
 					@foreach($data['video'] as $index => $video)
