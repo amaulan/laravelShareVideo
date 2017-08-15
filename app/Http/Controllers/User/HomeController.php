@@ -93,6 +93,11 @@ class HomeController extends Controller
             $data['playlist']                               =       \App\Playlist::where('course_id',$request->course_id)->get();
             $data['comment']                                =       \App\Comment::where(['playlist_id'=>$id,'is_blocked'=>0])->orderBy('id','desc')->get();
 
+            // $data['video']                                  =       \App\Playlist::where('id', $id)->get();
+            // $data['playlist']                               =       \App\Playlist::where('course_id', $check->course_id);
+            // $data['comment']                                =       $check->comments()->get();
+
+
             //chceking if authenticate
             if(\Auth::check())
             {
