@@ -15,6 +15,7 @@
     <link href="{{ url('assets/font-awesome/css/font-awesome.css') }}"" rel="stylesheet" />
         
     <!-- Custom styles for this template -->
+    <link href="{{ url('assets/lineicons/style.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/style-responsive.css') }}" rel="stylesheet">
 

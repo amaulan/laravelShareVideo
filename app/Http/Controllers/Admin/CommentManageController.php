@@ -9,6 +9,9 @@ class CommentManageController extends Controller
 {
     public function index()
 	{
+		$subscribe 									= \App\Comment::where('is_read','=',0)
+														->update(['is_read'=>1]);
+
 		$data[ 'comments' ] 						= \App\Comment::paginate(20);
 
 		return view( 'pages.comments.list', compact( 'data' ) );

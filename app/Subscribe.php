@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Subscribe extends Model
 {
     public $timestamps = false;
+
+    protected $fillable = [
+
+        'id','email','is_read',
+        
+    ];
 }

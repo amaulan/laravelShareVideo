@@ -10,7 +10,7 @@ class Feedback extends Model
 
 	protected $fillable = [
 
-        'feedback_text',
+        'feedback_text','is_read',
         
     ];
 }

@@ -58,6 +58,9 @@ class EmailController extends Controller
 
 	public function subscriberList()
 	{
+		$subscribe 									= \App\Subscribe::where('is_read','=',0)
+														->update(['is_read'=>1]);
+
 		$data['subscribes']							=	\App\Subscribe::paginate(20);
 
 		return view('pages.subcriber.list', compact( 'data' ));
@@ -65,6 +68,9 @@ class EmailController extends Controller
 	
 	public function feedbackList()
 	{
+		$feedback 									= \App\Feedback::where('is_read','=',0)
+														->update(['is_read'=>1]);
+
 		$data['feedbacks']							=	\App\Feedback::paginate(20);
 
 		return view('pages.feedbacks.list', compact( 'data' ));

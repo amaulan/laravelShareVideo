@@ -30,7 +30,7 @@ Route::group( [ 'middleware' => 'web' ], function(){
 	Route::group( ['prefix' => 'admin/manage' , 'middleware' => 'filter:auth:web'], function(){
 
 		Route::get('/', 									'Admin\DashboardController@index');
-		Route::get('/dashboard', 							'Admin\DashboardController@index');
+		Route::get('/dashboard', 							'Admin\DashboardController@index')->name('dashboard');
 
 
 		Route::group( ['prefix' => 'category'], function(){

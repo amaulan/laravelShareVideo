@@ -9,7 +9,7 @@ class Comment extends Model
 
 	protected $fillable = [
 
-    'id', 'comment_text', 'deleted_at','is_blocked','created_at','updated_at','user_id','playlist_id',
+    'id', 'comment_text', 'deleted_at','is_blocked','created_at','updated_at','user_id','playlist_id','is_read',
     
     ];
 
