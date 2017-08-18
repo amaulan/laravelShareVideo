@@ -49,26 +49,86 @@
                   	</div><!-- /row mt -->	
                   
                       
-                      <div class="row mt">
-                      	@foreach($data['top_playlist'] as $index => $top)
-						<div class="col-md-4 col-md-offset-4 mb">
-							<!-- WHITE PANEL - TOP USER -->
-							<div class="white-panel pn">
-								<div class="white-header">
-									<h5>TOP PLAYLIST</h5>
-								</div>
-								<p><img src="{{url('assets/img/top.png')}}" class="img-circle" width="80"></p>
-								<p><b>{{$top->playlist_name}}</b></p>
-								<div class="row">
-									<div class="col-md-12">
-										<p class="small mt">TOTAL WATCH</p>
-										<p>{{$top->total}}</p>
+                    <div class="row mt">
+                      	@if(count($data['top_course']) == 1)
+							@foreach($data['top_course'] as $index => $top)
+								<div class="col-md-4 col-md-offset-4 mb">
+									<!-- WHITE PANEL - TOP USER -->
+									<div class="white-panel pn">
+										<div class="white-header">
+											<h5>TOP COURSE</h5>
+										</div>
+										<p><img src="{{url('assets/img/top.png')}}" class="img-circle" width="80"></p>
+										<p><b>{{$top->course_name}}</b></p>
+										<div class="row">
+											<div class="col-md-6">
+												<p class="small mt">RANK</p>
+												<p>{{++$index}}</p>
+											</div>
+											<div class="col-md-6">
+												<p class="small mt">TOTAL WATCH</p>
+												<p>{{$top->total}}</p>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</div><!-- /col-md-4 -->
-                      	@endforeach
+								</div><!-- /col-md-4 -->
+		                    @endforeach
+                      	@else
+							@foreach($data['top_course'] as $index => $top)
+								<div class="col-md-4 mb">
+									<!-- WHITE PANEL - TOP USER -->
+									<div class="white-panel pn">
+										<div class="white-header">
+											<h5>TOP COURSE</h5>
+										</div>
+										<p><img src="{{url('assets/img/top.png')}}" class="img-circle" width="80"></p>
+										<p><b>{{$top->course_name}}</b></p>
+										<div class="row">
+											<div class="col-md-6">
+												<p class="small mt">RANK</p>
+												<p>{{++$index}}</p>
+											</div>
+											<div class="col-md-6">
+												<p class="small mt">TOTAL WATCH</p>
+												<p>{{$top->total}}</p>
+											</div>
+										</div>
+									</div>
+								</div><!-- /col-md-4 -->
+		                    @endforeach
+                      	@endif
                     </div><!-- /row -->
+
+						<div class="row mt">
+                  <div class="col-md-12">
+                      <section class="task-panel tasks-widget">
+	                	<div class="panel-heading">
+	                        <div class="pull-left"><h5><i class="fa fa-tasks"></i> Rank - Top Playlists</h5></div>
+	                        <br>
+	                 	</div>
+	                 	
+                          <div class="panel-body">
+                              <div class="task-content">
+
+                                  <ul class="task-list">
+                                  	@foreach($data['top_playlist'] as $index => $top)
+										<li>
+                                          <div class="task-checkbox">
+                                              {{++$index}}
+                                          </div>
+                                          <div class="task-title">
+                                              <span class="task-title-sp">{{$top->playlist_name}}</span>
+                                              <span class="badge bg-theme">{{$top->total}} Viewer</span>
+                                          </div>
+                                      	</li>
+	                 				@endforeach
+                                                                          
+                                  </ul>
+                              </div>
+                          </div>
+                      </section>
+                  </div><!-- /col-md-12-->
+              </div><!-- /row -->
 					
                   </div><!-- /col-lg-9 END SECTION MIDDLE -->
                   
@@ -90,19 +150,22 @@
 						
 
 						<!-- list Action -->
+					<a href="{{ url('admin/manage/comment/detail/'.$comment->id) }}">
                       <div class="desc">
                       	<div class="thumb">
-                      		<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                      		<span class="badge bg-theme"><i class="fa fa-user"></i></span>
                       	</div>
+                      	
                       	<div class="details">
-                      		<p><muted>{{$comment->created_at}}</muted><br/>
+                      		<p><muted style="color: #000;">{{$comment->created_at->diffForHumans()}}</muted><br/>
                       		   <a href="#">{{$comment->users()->first()->username}}</a><br/>
                       		   Comment on Playlist
                       		   <a href="{{url('watch/'.$comment->playlist_id)}}?course_id={{$comment->playlists()->first()->course_id}}&playlist_name={{$comment->playlists()->first()->playlists_name}}">{{ $comment->playlists()->first()->playlists_name }}</a>
                       		</p>
                       	</div>
-
+                      	
                       </div>
+                     </a>
 						
 
 					@endforeach

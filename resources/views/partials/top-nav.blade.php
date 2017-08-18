@@ -20,7 +20,7 @@
             <ul class="dropdown-menu extended inbox">
               <div class="notify-arrow notify-arrow-green"></div>
               <li>
-                <p class="green">Latest {{$data['new_feedbacks']->count()}} feedbacks</p>
+                <p class="green">You have {{$data['new_feedbacks']->count()}} new feedbacks</p>
               </li>
 
               @foreach($data['new_feedbacks'] as $index => $feedback)
@@ -57,7 +57,7 @@
             <ul class="dropdown-menu extended inbox">
               <div class="notify-arrow notify-arrow-green"></div>
               <li>
-                <p class="green">Latest {{$data['new_subscribes']->count()}} subscribes</p>
+                <p class="green">You have {{$data['new_subscribes']->count()}} new subscribes</p>
               </li>
               @foreach($data['new_subscribes'] as $index => $subscribe)
 
