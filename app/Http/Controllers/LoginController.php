@@ -13,10 +13,11 @@ class LoginController extends Controller
 
  	public function doLogin(Request $request)
  	{
- 		$dataLogin 										= $request->only('email', 'password');
+ 		$dataLogin 						= $request->only('email', 'password');
 
  		if(\Auth::attempt($dataLogin))
- 			return \Redirect::to('admin/manage/dashboard')->with('sc_msg', 'Login Successfuly');
+ 			return \Redirect::to('admin/manage/dashboard')
+ 				->with('sc_msg', 'Login Successfuly');
 
  		return \Redirect::to('login')
  				->with('err_msg', 'Login Failed, Username or Password Wrong')

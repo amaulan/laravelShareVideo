@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
 	public function index()
 	{
-		return view( 'pages.dashboard' );
+		$data['new_comments']				= \App\Comment::orderBy('crated_at','desc')->limit(7)->get()
+		return view( 'pages.dashboard', compact('data'));
 	}
 }

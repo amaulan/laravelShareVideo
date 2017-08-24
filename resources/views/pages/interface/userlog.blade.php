@@ -9,7 +9,7 @@
 			{{ csrf_field() }}
 				<input type="email" name="email" class="form-control" placeholder="EMAIL" style="margin-bottom:2px;">
 				<input type="password" name="password" class="form-control" placeholder="PASSWORD" style="margin-bottom:2px;">
-				<input type="submit" name="feedback" value="DAFTAR" class="btn btn-info col-md-12" style="margin-top:5px;">
+				<input type="submit" name="feedback" value="LOGIN" class="btn btn-info col-md-12" style="margin-top:5px;">
 			</form>
 		</div>
 	</div>

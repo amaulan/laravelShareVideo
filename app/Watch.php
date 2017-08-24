@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Watch extends Model
 {
-	public $timestamps = false;
+	public $timestamps 		= false;
 
-    protected $fillable = [
+    protected $fillable 	= [
 
 	 'playlist_name',
      'ip',
